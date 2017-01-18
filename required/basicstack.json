@@ -1,8 +1,7 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
     "Description": "DOA Stack with ADOP Gen 5",
-	
-	 "Mappings": {
+    "Mappings": {
         "RegionMap": {
           "eu-central-1": {
             "AMI": "ami-9bf712f4"
@@ -30,7 +29,6 @@
           }
         }
     },
- 
     "Outputs": {
         "ReleaseNote": {
             "Description": "This is your starting point, please copy this URL into your web browser.",
@@ -50,7 +48,23 @@
         }
     },
     "Parameters": {
-    
+        "AdopUsername": {
+            "Default": "changeme",
+            "Description": "ADOP admin account username. Username can not be set to 'admin' or 'Admin' and it must contain only letters and numbers. Minimum length is 3.",
+            "Type": "String",
+            "MinLength": "3",
+            "AllowedPattern": "(?!admin|Admin)[A-Za-z0-9.]*",
+            "ConstraintDescription": "Username can not be set to 'admin' or 'Admin' and it must contain only letters and numbers and minimum length is 3."
+        },
+        "AdopUserPassword": {
+            "NoEcho": "true",
+            "Description": "ADOP admin account password. Must be at least 8 characters long and contain at least one number, and cannot contain word \"password\" or your username",
+            "Type": "String",
+            "MinLength": "8",
+            "AllowedPattern": "(?!password|Password)[A-Za-z0-9]*([a-zA-Z]+[0-9]+|[0-9]+[a-zA-Z]+)",
+            "ConstraintDescription": "Password must contain only letters and numbers, it must contain at least one number, and cannot contain your username or word \"password\""
+        },
+        
         "KeyName": {
             "Description": "Key-pair name to use. Note : Make sure you choose a key which you have.",
             "Type": "AWS::EC2::KeyPair::KeyName"
@@ -67,7 +81,7 @@
                         "VolumeType": "gp2"
                     }
                 }],
-				 "ImageId": {
+                "ImageId": {
                     "Fn::FindInMap": [
                         "RegionMap", {
                             "Ref": "AWS::Region"
@@ -75,7 +89,6 @@
                         "AMI"
                     ]
                 },
-                
                 "InstanceType": "t2.micro",
                 "KeyName": {
                     "Ref": "KeyName"
@@ -106,8 +119,21 @@
                       ]
                     }
                   }
-                ]
-                
+                ],
+				"UserData" : {
+      "Fn::Base64" : {
+        "Fn::Join" : ["", [
+          "#!/bin/bash\n",
+          "/opt/aws/bin/cfn-init -s ", { "Ref" : "AWS::StackName" },
+          "         -r MyInstance ",
+          "         --region ", { "Ref" : "AWS::Region" },
+          "\n",
+          "/opt/aws/bin/cfn-signal -e $? --stack ", { "Ref" : "AWS::StackName" },
+          "         --resource MyInstance \n"
+        ] ]
+      }
+    }
+               
             },
             "Type": "AWS::EC2::Instance"
         },

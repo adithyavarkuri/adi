@@ -1,0 +1,25 @@
+creating repo----
+1.git init
+2.add readme.md file in folder
+3.git config --bool core.bare true
+
+
+cloning proj
+1.git clone F:/gitrepo/
+
+commiting proj
+
+1.git add .
+2.git status
+3.git commit -m "first commit"
+	if gets error as please tell me who are you then 
+	1. git config --global user.email "adithya.varkuri@gmail.com"
+	2.git config --global user.name "adithya"
+
+4.git push
+	if error gets as refusing to update checked out branch then make master repositor as bare.
+
+
+	
+
+
