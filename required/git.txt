@@ -20,6 +20,12 @@ commiting proj
 	if error gets as refusing to update checked out branch then make master repositor as bare.
 
 
+
+1. chmod +x .git/hooks/post-commit
+
+
+**/*.war
+
 	
 
 
