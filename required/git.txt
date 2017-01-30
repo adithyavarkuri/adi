@@ -26,6 +26,22 @@ commiting proj
 
 **/*.war
 
+
+---------------sonarQube
+
+
+
+running sonarqub
+https://docs.sonarqube.org/display/SONAR/Get+Started+in+Two+Minutes
+
+https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
+
+
+Add the <install_directory>/bin directory to your path.
+
+
+4541df7713ea260ba7f3c6756871f51c5fae1736
+
 	
 
 
