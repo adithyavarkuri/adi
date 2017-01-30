@@ -20,11 +20,30 @@ commiting proj
 	if error gets as refusing to update checked out branch then make master repositor as bare.
 
 
+updating project 
+1.git pull
 
-1. chmod +x .git/hooks/post-commit
+commiting specified files.
+1.git add file1 file2
+2.git commit -m "fsdf"
+
+Java 3 years of experience
 
 
-**/*.war
+HI,
+
+I have 3 years of experience in java web application development and have experience in automating build and deployment .
+
+please find the below resume for further process.
+
+
+
+
+
+Thanks And Regards,
+Adithya.
+
+
 
 	
 
